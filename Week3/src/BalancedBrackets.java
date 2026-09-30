@@ -1,0 +1,29 @@
+import java.util.Stack;
+
+public class BalancedBrackets {
+    public static String isBalanced(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : s.toCharArray()) {
+            if (c == '[' || c == '{' || c == '(') {
+                stack.push(c);
+            }
+            else if (c == ']' || c == '}' || c == ')') {
+                if (stack.isEmpty()) {
+                    return "NO";
+                }
+                char openBracket = stack.pop();
+                if ((c == ']' && openBracket != '[') ||
+                        (c == '}' && openBracket != '{') ||
+                        (c == ')' && openBracket != '(')) {
+                    return "NO";
+                }
+            }
+        }
+        if(stack.isEmpty()) {
+            return "YES";
+        }else{
+            return "NO";
+        }
+    }
+}
